@@ -25,9 +25,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 curl https://raw.githubusercontent.com/jann6373/ArchFiles/master/packages > root/packages
 curl https://raw.githubusercontent.com/jann6373/ArchFiles/master/globalconfig > root/globalconfig
 curl https://raw.githubusercontent.com/jann6373/ArchFiles/master/userconfig > root/userconfig
-chmod +x packages
-chmod +x globalconfig
-chmod +x userconfig' > /mnt/install_arch
+chmod +x root/packages
+chmod +x root/globalconfig
+chmod +x root/userconfig' > /mnt/install_arch
 chmod +x /mnt/install_arch
 echo "./install_arch"|arch-chroot /mnt
 rm /mnt/install_arch
