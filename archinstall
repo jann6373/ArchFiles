@@ -1,3 +1,34 @@
 #!/bin/bash
 
-echo "install"
+DISK="sda"
+HOSTNAME="jannick"
+
+timedatectl set-ntp true
+echo -e "o\nn\n\n\n\n\na\nw\n"|sudo fdisk -W always /dev/${DISK}
+mkfs.ext4 /dev/${DISK}1
+mount /dev/${DISK}1 /mnt
+pacstrap /mnt base
+genfstab -U /mnt >> /mnt/etc/fstab
+echo 'ln -sf /usr/share/zoneinfo/Europe/Copenhagen /etc/localtime
+hwclock --systohc
+echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "KEYMAP=dk" >> /etc/vconsole.conf
+locale-gen
+echo "'${HOSTNAME}'" > /etc/hostname
+echo "127.0.0.1 '${HOSTNAME}'.localdomain '${HOSTNAME}'" > /etc/hosts
+pacman --noconfirm -S networkmanager
+systemctl enable NetworkManager
+pacman --noconfirm -S grub
+grub-install --target=i386-pc /dev/'${DISK}'
+grub-mkconfig -o /boot/grub/grub.cfg
+wget https://raw.githubusercontent.cmo/jann6373/ArchFiles/master/packages
+wget https://raw.githubusercontent.cmo/jann6373/ArchFiles/master/globalconfig
+wget https://raw.githubusercontent.cmo/jann6373/ArchFiles/master/userconfig
+chmod +x packages
+chmod +x globalconfig
+chmod +x userconfig' > /mnt/install_arch
+chmod +x /mnt/install_arch
+echo "./install_arch"|arch-chroot /mnt
+rm /mnt/install_arch
+umount -R /mnt
