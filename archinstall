@@ -22,9 +22,9 @@ systemctl enable NetworkManager
 pacman --noconfirm -S grub
 grub-install --target=i386-pc /dev/'${DISK}'
 grub-mkconfig -o /boot/grub/grub.cfg
-wget https://raw.githubusercontent.cmo/jann6373/ArchFiles/master/packages
-wget https://raw.githubusercontent.cmo/jann6373/ArchFiles/master/globalconfig
-wget https://raw.githubusercontent.cmo/jann6373/ArchFiles/master/userconfig
+curl https://raw.githubusercontent.com/jann6373/ArchFiles/master/packages > root/packages
+curl https://raw.githubusercontent.com/jann6373/ArchFiles/master/globalconfig > root/globalconfig
+curl https://raw.githubusercontent.com/jann6373/ArchFiles/master/userconfig > root/userconfig
 chmod +x packages
 chmod +x globalconfig
 chmod +x userconfig' > /mnt/install_arch
