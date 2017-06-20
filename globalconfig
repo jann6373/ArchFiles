@@ -1,3 +1,11 @@
 #!/bin/bash
 
-echo "Global config"
+echo "root ALL=(ALL) ALL">/etc/sudoers
+
+echo "jann6373 ALL=(ALL) ALL">>/etc/sudoers
+
+pacman --noconfirm -Rnu vi
+ln /usr/bin/vim /usr/bin/vi
+
+systemctl enable PulseAudio
+

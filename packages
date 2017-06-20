@@ -1,3 +1,20 @@
 #!/bin/bash
 
-echo "Packages"
+PKGS="
+sudo
+xfce4-terminal
+pamixer
+wget
+git
+make
+vim
+firefox
+xorg-server
+xorg-xinit
+i3-wm
+i3blocks
+dmenu
+d-feet
+pulseaudio
+"
+pacman -S $(echo $PKGS)

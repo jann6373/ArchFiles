@@ -1,3 +1,9 @@
 #!/bin/bash
 
-echo "User config"
+cd
+
+un=$(pwd|grep -Po "(?<=/)[^/]*$")
+
+echo "User config $un"
+
+echo -e "setxkbmap dk\nexec i3">.xinitrc
